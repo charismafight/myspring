@@ -18,8 +18,8 @@ public class SpringTest {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
         MyBean myBean = (MyBean) context.getBean("myBean");
-        myBean.setName("test");
-        System.out.println("this is appcontext's" + myBean.getName());
+//        myBean.setName("test");
+        System.out.println("this is appcontext's " + myBean.getName());
         // this is a deprecated class demo
         XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("beanconfig/TestBean.xml"));
         System.out.println(factory.getClass());
