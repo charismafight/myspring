@@ -1,4 +1,4 @@
-package spring_in_practise;
+package spring_in_practise.ch01;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package spring_in_practise;
+package spring_in_practise.ch01;
 
 import org.springframework.core.io.Resource;
 
@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AccountDAOImpl implements AccountDAO {
@@ -17,10 +16,14 @@ public class AccountDAOImpl implements AccountDAO {
     public void setCsvResource(Resource csvFile) {
         this.csvResource = csvFile;
     }
+    public Resource getCsvResource(){
+        return csvResource;
+    }
+
 
     @Override
     public List<Account> findAll() throws Exception {
-        var results = new ArrayList<Account>();
+        ArrayList<Account> results = new ArrayList<Account>();
         DateFormat dataFormat = new SimpleDateFormat("MMddyyyy");
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(csvResource.getFile()))) {
