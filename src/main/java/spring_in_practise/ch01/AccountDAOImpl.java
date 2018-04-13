@@ -16,7 +16,8 @@ public class AccountDAOImpl implements AccountDAO {
     public void setCsvResource(Resource csvFile) {
         this.csvResource = csvFile;
     }
-    public Resource getCsvResource(){
+
+    public Resource getCsvResource() {
         return csvResource;
     }
 
@@ -34,5 +35,15 @@ public class AccountDAOImpl implements AccountDAO {
             }
         }
         return results;
+    }
+
+    private int mark;
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 }

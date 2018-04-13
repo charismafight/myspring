@@ -21,4 +21,6 @@
     <bean id="accountService" class="spring_in_practise.ch01.AccountService">
         <property name="accountDAO" ref="accountDAO"></property>
     </bean>
+
+    <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
 </beans>
