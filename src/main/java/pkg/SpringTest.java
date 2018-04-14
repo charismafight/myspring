@@ -49,7 +49,7 @@ public class SpringTest {
         protoTypeModel.setMark(1);
         ProtoTypeModel protoTypeModel1 = (ProtoTypeModel) context.getBean("protoTypeModel");
         System.out.println("protoTypeModel1: " + protoTypeModel1.getMark());
-        System.out.println("prototype test end:");
+        System.out.println("prototype test end");
         System.out.println("spring in practise ch01 end");
     }
 }

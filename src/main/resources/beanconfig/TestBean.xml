@@ -7,9 +7,12 @@
          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
     <context:component-scan base-package="pkg"></context:component-scan>
+    <context:component-scan base-package="spring_in_practise"></context:component-scan>
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:location="myspring.properties"></bean>
     <bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>
     <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype" p:csvResource-ref="mockResource"></bean>
     <bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>
     <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
+    <!--<bean id="user" class="spring_in_practise.ch01.User"></bean>-->
+    <context:annotation-config></context:annotation-config>
 </beans>
