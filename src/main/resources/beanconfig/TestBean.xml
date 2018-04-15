@@ -4,8 +4,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+http://www.springframework.org/schema/util
+http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!--<jee:jndi-lookup id="dataSource-jndi" jndi-name="jdbc/myspring" proxy-interface="javax.sql.DataSource"></jee:jndi-lookup>-->
     <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
     <context:component-scan base-package="pkg"></context:component-scan>
     <context:component-scan base-package="spring_in_practise"></context:component-scan>
@@ -23,5 +34,17 @@
           p:url="${dataSource.url}"
           p:username="${dataSource.username}"
           p:password="${dataSource.password}"/>
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>
+    <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
+          p:hibernateProperties-ref="hibernateProperties"></bean>
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">
+    </bean>
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.dialect">
+            org.hibernate.dialect.MySQL5InnoDBDialect
+        </prop>
+        <prop key="hibernate.show_sql">false</prop>
+    </util:properties>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

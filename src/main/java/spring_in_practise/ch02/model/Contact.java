@@ -7,14 +7,18 @@
  */
 package spring_in_practise.ch02.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
 /**
  * @author Willie Wheeler (willie.wheeler@gmail.com)
  */
+@Entity
+@Table(name = "contact")
+@NamedQuery(name = "findContactsByEmail", query = "from Contact where email like :email")
 public class Contact {
     private Long id;
     private String lastName;
@@ -22,6 +26,9 @@ public class Contact {
     private String middleInitial;
     private String email;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     public Long getId() {
         return id;
     }
@@ -32,6 +39,7 @@ public class Contact {
 
     @NotNull
     @Length(min = 1, max = 40)
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -42,6 +50,7 @@ public class Contact {
 
     @NotNull
     @Length(min = 1, max = 40)
+    @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
     }
@@ -51,6 +60,7 @@ public class Contact {
     }
 
     @Length(max = 1)
+    @Column(name = "mi")
     public String getMiddleInitial() {
         return middleInitial;
     }
@@ -60,6 +70,7 @@ public class Contact {
     }
 
     @Email
+    @Column
     public String getEmail() {
         return email;
     }
@@ -68,6 +79,7 @@ public class Contact {
         this.email = "test";
     }
 
+    @Transient
     public String getFullName() {
         String fullName = lastName + ", " + firstName;
         if (!(middleInitial == null || "".equals(middleInitial.trim()))) {

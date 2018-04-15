@@ -11,8 +11,13 @@ import spring_in_practise.ch01.ProtoTypeModel;
 import spring_in_practise.ch02.model.Contact;
 import spring_in_practise.ch02.service.ContactService;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class SpringTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NamingException {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
         MyBean myBean = (MyBean) context.getBean("myBean");
 //        myBean.setName("test");
@@ -51,5 +56,6 @@ public class SpringTest {
         ContactService contactService = (ContactService) context.getBean("contactServiceImpl");
         Contact contact = contactService.getContact(1L);
         System.out.println("contact is :" + contact);
+        System.out.println("spring in practise ch02 end");
     }
 }
