@@ -1,20 +1,15 @@
 package pkg;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.support.StaticListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import spring_in_practise.ch01.AccountDAO;
 import spring_in_practise.ch01.AccountDAOImpl;
 import spring_in_practise.ch01.AccountService;
 import spring_in_practise.ch01.ProtoTypeModel;
-
-import java.lang.invoke.VarHandle;
+import spring_in_practise.ch02.model.Contact;
+import spring_in_practise.ch02.service.ContactService;
 
 public class SpringTest {
     public static void main(String[] args) {
@@ -51,5 +46,10 @@ public class SpringTest {
         System.out.println("protoTypeModel1: " + protoTypeModel1.getMark());
         System.out.println("prototype test end");
         System.out.println("spring in practise ch01 end");
+
+        System.out.println("spring in practise ch02 start");
+        ContactService contactService = (ContactService) context.getBean("contactServiceImpl");
+        Contact contact = contactService.getContact(1L);
+        System.out.println("contact is :" + contact);
     }
 }

@@ -1,17 +1,20 @@
 package spring_in_practise.ch02.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 import spring_in_practise.ch02.model.Contact;
 
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 
+@Component
 public class ContactServiceImpl implements ContactService {
     private static final String CREATE_SQL = "insert into contact (last_name,first_name,mi,email) " + "values (:lastName,:firstName,:mi,:email)";
     private static final String FIND_ALL_SQL = "select id, last_name, first_name, mi, email from contact";
