@@ -5,18 +5,27 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import spring_in_practise.ch01.AccountDAOImpl;
 import spring_in_practise.ch01.AccountService;
 import spring_in_practise.ch01.ProtoTypeModel;
+import spring_in_practise.ch02.dao.ContactDao;
+import spring_in_practise.ch02.dao.hbn.HbnConactDao;
 import spring_in_practise.ch02.model.Contact;
 import spring_in_practise.ch02.service.ContactService;
 
+import javax.inject.Inject;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 public class SpringTest {
+    @Inject
+    static ContactDao dao;
+
+
     public static void main(String[] args) throws NamingException {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
         MyBean myBean = (MyBean) context.getBean("myBean");
@@ -54,7 +63,11 @@ public class SpringTest {
 
         System.out.println("spring in practise ch02 start");
         ContactService contactService = (ContactService) context.getBean("contactServiceImpl");
+        ContactDao hbnConactDao = (ContactDao) context.getBean("hbnConactDao");
+        var contact_email = hbnConactDao.findByEmail("lli");
+        System.out.println("find by email result:" + contact_email);
         Contact contact = contactService.getContact(1L);
+        var c = dao.get(1);
         System.out.println("contact is :" + contact);
         System.out.println("spring in practise ch02 end");
     }

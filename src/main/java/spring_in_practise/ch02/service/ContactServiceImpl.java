@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import spring_in_practise.ch02.dao.ContactDao;
 import spring_in_practise.ch02.model.Contact;
 
 import javax.inject.Inject;
@@ -35,6 +36,9 @@ public class ContactServiceImpl implements ContactService {
     //private NamedParameterJdbcOperations jdbcOperations;
     //change the jdbcOperation to hibernate's session api
     private SessionFactory sessionFactory;
+    //refactor the hibernate's session api
+    @Inject
+    private ContactDao contactDao;
 
     @Inject
     private ContactRowMapper mapper;
@@ -44,25 +48,30 @@ public class ContactServiceImpl implements ContactService {
 //        KeyHolder keyHolder = new GeneratedKeyHolder();
 //        jdbcOperations.update(CREATE_SQL, parameterSource, keyHolder);
 //        contact.setId(keyHolder.getKey().longValue());
-        getSession().save(contact);
+//        getSession().save(contact);
+        contactDao.create(contact);
     }
+
 
     public List<Contact> getContacts() {
 //        return jdbcOperations.query(FIND_ALL_SQL, new HashMap<String, Object>(), mapper);
-        return getSession().createQuery("from contact").list();
+//        return getSession().createQuery("from contact").list();
+        return contactDao.getAll();
     }
 
     public List<Contact> getContactsByEmail(String email) {
 //        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("email", "%" + email + "%");
 //        return jdbcOperations.query(FIND_ALL_BY_EMAIL_LIKE_SQL, parameterSource, mapper);
-        return getSession().getNamedQuery("findContactsByEmail").setParameter("email", "%" + email + "%").list();
+//        return getSession().getNamedQuery("findContactsByEmail").setParameter("email", "%" + email + "%").list();
+        return contactDao.findByEmail(email);
     }
 
     public Contact getContact(Long id) {
 //        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id", id);
 //        return jdbcOperations.queryForObject(FIND_ONE_SQL, parameterSource, mapper);
-        System.out.println(Contact.class);
-        return getSession().get(Contact.class, id);
+//        System.out.println(Contact.class);
+//        return getSession().get(Contact.class, id);
+        return contactDao.get(id);
     }
 
     public void updateContact(Contact contact) {
@@ -73,13 +82,15 @@ public class ContactServiceImpl implements ContactService {
 //                .addValue("mi", contact.getMiddleInitial())
 //                .addValue("email", contact.getEmail());
 //        jdbcOperations.update(UPDATE_SQL, params);
-        getSession().update(contact);
+//        getSession().update(contact);
+        contactDao.update(contact);
     }
 
     public void deleteContact(Long id) {
 //        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id", id);
 //        jdbcOperations.update(DELETE_SQL, parameterSource);
-        getSession().delete(id);
+//        getSession().delete(id);
+        contactDao.delete(id);
     }
 
     private Session getSession() {

@@ -20,9 +20,11 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
     <context:component-scan base-package="pkg"></context:component-scan>
     <context:component-scan base-package="spring_in_practise"></context:component-scan>
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:location="myspring.properties"></bean>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="myspring.properties"></bean>
     <bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>
-    <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype" p:csvResource-ref="mockResource"></bean>
+    <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"
+          p:csvResource-ref="mockResource"></bean>
     <bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>
     <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
     <!--<bean id="user" class="spring_in_practise.ch01.User"></bean>-->
@@ -35,11 +37,19 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
           p:username="${dataSource.username}"
           p:password="${dataSource.password}"/>
     <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>-->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+          p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
           p:hibernateProperties-ref="hibernateProperties"></bean>
+    <!--add a jpa factory bean-->
+    <bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"></bean>
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">
     </bean>
+    <!--add a jpa transaction manager-->
+    <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="jpaFactory"></bean>
+
     <util:properties id="hibernateProperties">
         <prop key="hibernate.dialect">
             org.hibernate.dialect.MySQL5InnoDBDialect

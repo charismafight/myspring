@@ -79,21 +79,22 @@ public class AbstractHbnDao<T extends Object> implements Dao<T> {
 
     @Override
     public void delete(Serializable id) {
-
+        //这里用load就很合理，delete只根据id删除，而load也只把id丢到代理类中，就不需要再额外去查一次数据库
+        getSession().delete(load(id));
     }
 
     @Override
     public void deleteAll() {
-
+        getSession().createQuery("delete " + getDomainClassName()).executeUpdate();
     }
 
     @Override
     public long count() {
-        return 0;
+        return (long) getSession().createQuery("select count(*) from " + getDomainClassName()).uniqueResult();
     }
 
     @Override
     public boolean exists(Serializable id) {
-        return false;
+        return (get(id) != null);
     }
 }
