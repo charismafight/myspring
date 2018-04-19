@@ -1,5 +1,6 @@
 package spring_in_practise.ch02.dao.jpa;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import spring_in_practise.ch02.dao.ContactDao;
 import spring_in_practise.ch02.model.Contact;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Repository
 public class AbstractJPADao implements ContactDao {
-    @PersistenceContext
+    @PersistenceContext(name = "jpaFactory")
     private EntityManager entityManager;
 
     @Override

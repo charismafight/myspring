@@ -3,6 +3,7 @@ package spring_in_practise.ch02.service;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -32,12 +33,14 @@ public class ContactServiceImpl implements ContactService {
     private static final String UPDATE_SQL = "update contact set last_name = :lastName, " + "first_name = :firstName, mi = :mi, email = :email " + "where id = :id";
     private static final String DELETE_SQL = "delete from contact where id = :id";
 
-    @Inject
+    //    @Inject
     //private NamedParameterJdbcOperations jdbcOperations;
     //change the jdbcOperation to hibernate's session api
-    private SessionFactory sessionFactory;
+//    @Qualifier(value = "jpaFactory")
+//    private SessionFactory sessionFactory;
     //refactor the hibernate's session api
     @Inject
+    @Qualifier(value = "abstractJPADao")
     private ContactDao contactDao;
 
     @Inject
@@ -93,7 +96,7 @@ public class ContactServiceImpl implements ContactService {
         contactDao.delete(id);
     }
 
-    private Session getSession() {
-        return sessionFactory.openSession();
-    }
+//    private Session getSession() {
+//        return sessionFactory.openSession();
+//    }
 }
