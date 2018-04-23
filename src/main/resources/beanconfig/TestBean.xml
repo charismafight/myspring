@@ -38,15 +38,15 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
           p:password="${dataSource.password}"/>
     <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>-->
     <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"-->
-          <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
-          <!--p:hibernateProperties-ref="hibernateProperties"></bean>-->
+    <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
+    <!--p:hibernateProperties-ref="hibernateProperties"></bean>-->
     <!--add a jpa factory bean-->
     <bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
           p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">
-    </bean>
+    <!--<bean id="transactionManager"-->
+    <!--class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">-->
+    <!--</bean>-->
     <!--add a jpa transaction manager-->
     <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="jpaFactory"></bean>
@@ -55,7 +55,7 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
         <prop key="hibernate.dialect">
             org.hibernate.dialect.MySQL5InnoDBDialect
         </prop>
-        <prop key="hibernate.show_sql">false</prop>
+        <prop key="hibernate.show_sql">true</prop>
     </util:properties>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
 </beans>

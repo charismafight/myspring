@@ -24,7 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 
 @Component
-@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.NEVER, rollbackFor = RuntimeException.class, rollbackForClassName = "cccc")
+@Transactional("jpaTransactionManager")
+//@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.NEVER, rollbackFor = RuntimeException.class, rollbackForClassName = "cccc")
 public class ContactServiceImpl implements ContactService {
     private static final String CREATE_SQL = "insert into contact (last_name,first_name,mi,email) " + "values (:lastName,:firstName,:mi,:email)";
     private static final String FIND_ALL_SQL = "select id, last_name, first_name, mi, email from contact";

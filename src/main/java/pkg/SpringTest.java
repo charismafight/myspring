@@ -22,9 +22,6 @@ import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 public class SpringTest {
-    @Inject
-    static ContactDao dao;
-
 
     public static void main(String[] args) throws NamingException {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
@@ -67,7 +64,6 @@ public class SpringTest {
         var contact_email = hbnConactDao.findByEmail("lli");
         System.out.println("find by email result:" + contact_email);
         Contact contact = contactService.getContact(1L);
-        var c = dao.get(1);
         System.out.println("contact is :" + contact);
         System.out.println("spring in practise ch02 end");
     }
