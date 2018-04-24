@@ -7,6 +7,7 @@
        xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://www.springframework.org/schema/context
@@ -14,7 +15,9 @@
          http://www.springframework.org/schema/tx
          http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 http://www.springframework.org/schema/util
-http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+http://www.springframework.org/schema/util/spring-util-3.1.xsd
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa-1.1.xsd">
 
     <!--<jee:jndi-lookup id="dataSource-jndi" jndi-name="jdbc/myspring" proxy-interface="javax.sql.DataSource"></jee:jndi-lookup>-->
     <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
@@ -31,7 +34,7 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     <context:annotation-config></context:annotation-config>
     <context:component-scan base-package="spring_in_practise.ch02.service"/>
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+    <bean id="dataSource" lazy-init="false" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
           p:driverClassName="${dataSource.driverClassName}"
           p:url="${dataSource.url}"
           p:username="${dataSource.username}"
@@ -43,19 +46,22 @@ http://www.springframework.org/schema/util/spring-util-3.1.xsd">
     <!--add a jpa factory bean-->
     <bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
-          p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider"></bean>
+          p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider" lazy-init="false"></bean>
     <!--<bean id="transactionManager"-->
     <!--class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">-->
     <!--</bean>-->
     <!--add a jpa transaction manager-->
     <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-          p:entityManagerFactory-ref="jpaFactory"></bean>
+          p:entityManagerFactory-ref="jpaFactory" lazy-init="false"></bean>
 
     <util:properties id="hibernateProperties">
+        <prop key="hibernate.lazy">false</prop>
         <prop key="hibernate.dialect">
             org.hibernate.dialect.MySQL5InnoDBDialect
         </prop>
         <prop key="hibernate.show_sql">true</prop>
     </util:properties>
     <tx:annotation-driven/>
+    <jpa:repositories base-package="spring_in_practise.ch02.dao" entity-manager-factory-ref="jpaFactory"
+                      transaction-manager-ref="jpaTransactionManager"></jpa:repositories>
 </beans>

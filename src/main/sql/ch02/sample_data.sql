@@ -1,3 +1,4 @@
+use myspring;
 insert into contact values
     (1, 'Zimmerman', 'Robert', 'A', 'bobdylan@example.com', null, null),
     (2, 'Osbourne', 'John', 'M', 'ozzyosbourne@example.com', null, null),

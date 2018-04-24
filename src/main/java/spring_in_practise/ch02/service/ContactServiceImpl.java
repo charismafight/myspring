@@ -2,8 +2,11 @@ package spring_in_practise.ch02.service;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -17,15 +20,18 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import spring_in_practise.ch02.dao.ContactDao;
+import spring_in_practise.ch02.dao.jpa.JpaContactDao;
 import spring_in_practise.ch02.model.Contact;
 
 import javax.inject.Inject;
+import javax.persistence.FetchType;
 import java.util.HashMap;
 import java.util.List;
 
 @Component
 @Transactional("jpaTransactionManager")
 //@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.NEVER, rollbackFor = RuntimeException.class, rollbackForClassName = "cccc")
+@Lazy(value = false)
 public class ContactServiceImpl implements ContactService {
     private static final String CREATE_SQL = "insert into contact (last_name,first_name,mi,email) " + "values (:lastName,:firstName,:mi,:email)";
     private static final String FIND_ALL_SQL = "select id, last_name, first_name, mi, email from contact";
@@ -41,8 +47,8 @@ public class ContactServiceImpl implements ContactService {
 //    private SessionFactory sessionFactory;
     //refactor the hibernate's session api
     @Inject
-    @Qualifier(value = "abstractJPADao")
-    private ContactDao contactDao;
+//    @Qualifier(value = "abstractJPADao")
+    private JpaContactDao contactDao;
 
     @Inject
     private ContactRowMapper mapper;
@@ -53,21 +59,24 @@ public class ContactServiceImpl implements ContactService {
 //        jdbcOperations.update(CREATE_SQL, parameterSource, keyHolder);
 //        contact.setId(keyHolder.getKey().longValue());
 //        getSession().save(contact);
-        contactDao.create(contact);
+//        contactDao.create(contact);
+        contactDao.save(contact);
     }
 
 
     public List<Contact> getContacts() {
 //        return jdbcOperations.query(FIND_ALL_SQL, new HashMap<String, Object>(), mapper);
 //        return getSession().createQuery("from contact").list();
-        return contactDao.getAll();
+//        return contactDao.getAll();
+        return null;
     }
 
     public List<Contact> getContactsByEmail(String email) {
 //        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("email", "%" + email + "%");
 //        return jdbcOperations.query(FIND_ALL_BY_EMAIL_LIKE_SQL, parameterSource, mapper);
 //        return getSession().getNamedQuery("findContactsByEmail").setParameter("email", "%" + email + "%").list();
-        return contactDao.findByEmail(email);
+//        return contactDao.findByEmail(email);
+        return null;
     }
 
     public Contact getContact(Long id) {
@@ -75,7 +84,8 @@ public class ContactServiceImpl implements ContactService {
 //        return jdbcOperations.queryForObject(FIND_ONE_SQL, parameterSource, mapper);
 //        System.out.println(Contact.class);
 //        return getSession().get(Contact.class, id);
-        return contactDao.get(id);
+//        return contactDao.get(id);
+        return contactDao.getOne(id);
     }
 
     public void updateContact(Contact contact) {
@@ -87,14 +97,14 @@ public class ContactServiceImpl implements ContactService {
 //                .addValue("email", contact.getEmail());
 //        jdbcOperations.update(UPDATE_SQL, params);
 //        getSession().update(contact);
-        contactDao.update(contact);
+//        contactDao.update(contact);
     }
 
     public void deleteContact(Long id) {
 //        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("id", id);
 //        jdbcOperations.update(DELETE_SQL, parameterSource);
 //        getSession().delete(id);
-        contactDao.delete(id);
+//        contactDao.delete(id);
     }
 
 //    private Session getSession() {

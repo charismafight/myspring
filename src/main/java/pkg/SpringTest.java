@@ -2,6 +2,7 @@ package pkg;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ import javax.sql.DataSource;
 
 public class SpringTest {
 
+    @Lazy(value = false)
     public static void main(String[] args) throws NamingException {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
         MyBean myBean = (MyBean) context.getBean("myBean");
@@ -64,7 +66,7 @@ public class SpringTest {
         var contact_email = hbnConactDao.findByEmail("lli");
         System.out.println("find by email result:" + contact_email);
         Contact contact = contactService.getContact(1L);
-        System.out.println("contact is :" + contact);
+        System.out.println("contact is :" + contact.getId());
         System.out.println("spring in practise ch02 end");
     }
 }
