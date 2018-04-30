@@ -1,5 +1,5 @@
--- create database myspring;
--- use myspring;
+create database IF NOT EXISTS myspring;
+USE myspring;
 drop table if exists contact;
 create table contact (
     id bigint unsigned not null auto_increment primary key,
