@@ -3,21 +3,20 @@
   <component name="ExternalSystem" externalSystem="Maven" />
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration>
+      <configuration process_explicitly_annotated="false">
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/beanconfig/TestBean.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/beanconfig/TestBean.xml</file>
           <file>file://$MODULE_DIR$/src/WEB-INF/main-servlet.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/beanconfig/TestBean.xml</file>
         </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/WEB-INF/web.xml" />
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/src" relative="/" />
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
