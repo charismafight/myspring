@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: lee
-  Date: 18-5-2
-  Time: 下午11:56
+  Date: 18-5-3
+  Time: 下午5:42
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
     <title>Member:${member}</title>
 </head>
 <body>
-<h1> Member:${member}</h1>
+<h1>Member: ${member}</h1>
 <p><a href="list.do">Back</a></p>
 </body>
 </html>

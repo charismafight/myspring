@@ -156,16 +156,11 @@
                 <configuration>
                     <webApp>
                         <contextPath>/${project.artifactId}</contextPath>
+                        <descriptor>/home/lee/IdeaProjects/myspring/src/main/webapp/WEB-INF/web.xml</descriptor>
                     </webApp>
-                    <webAppSourceDirectory>
-                        ${project.basedir}/src/main/WEB-INF/
-                    </webAppSourceDirectory>
                     <stopKey>CTRL+C</stopKey>
                     <stopPort>8999</stopPort>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <scanTargets>
-                        <scanTarget>src/main/WEB-INF/web.xml</scanTarget>
-                    </scanTargets>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -182,6 +177,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
