@@ -68,5 +68,17 @@ public class SpringTest {
         Contact contact = contactService.getContact(1L);
         System.out.println("contact is :" + contact.getId());
         System.out.println("spring in practise ch02 end");
+
+
+
+
+        //this is spring in action start
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("spring in action start");
+
+        System.out.println("spring in action end");
+        ((ClassPathXmlApplicationContext) context).close();
     }
 }
