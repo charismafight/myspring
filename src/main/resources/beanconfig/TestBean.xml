@@ -10,61 +10,61 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-         http://www.springframework.org/schema/context
-         http://www.springframework.org/schema/context/spring-context.xsd
-         http://www.springframework.org/schema/tx
-         http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-http://www.springframework.org/schema/util
-http://www.springframework.org/schema/util/spring-util-3.1.xsd
-http://www.springframework.org/schema/data/jpa
-http://www.springframework.org/schema/data/jpa/spring-jpa-1.1.xsd
-http://www.springframework.org/schema/mvc
-http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.1.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa-1.1.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-    <!--&lt;!&ndash;<jee:jndi-lookup id="dataSource-jndi" jndi-name="jdbc/myspring" proxy-interface="javax.sql.DataSource"></jee:jndi-lookup>&ndash;&gt;-->
-    <!--<bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>-->
-    <!--<context:component-scan base-package="pkg"></context:component-scan>-->
-    <!--&lt;!&ndash;<context:component-scan base-package="spring_in_practise"></context:component-scan>&ndash;&gt;-->
-    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"-->
-    <!--p:location="myspring.properties"></bean>-->
-    <!--<bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>-->
-    <!--<bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"-->
-    <!--p:csvResource-ref="mockResource"></bean>-->
-    <!--<bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>-->
-    <!--<bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>-->
-    <!--&lt;!&ndash;<bean id="user" class="spring_in_practise.ch01.User"></bean>&ndash;&gt;-->
-    <!--&lt;!&ndash;<context:annotation-config></context:annotation-config>&ndash;&gt;-->
-    <!--<context:component-scan base-package="spring_in_practise.ch02.service"/>-->
+    <!--<jee:jndi-lookup id="dataSource-jndi" jndi-name="jdbc/myspring" proxy-interface="javax.sql.DataSource"></jee:jndi-lookup>-->
+    <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
+    <context:component-scan base-package="pkg"></context:component-scan>
+    <context:component-scan base-package="spring_in_practise"></context:component-scan>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="myspring.properties"></bean>
+    <bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>
+    <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"
+          p:csvResource-ref="mockResource"></bean>
+    <bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>
+    <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
+    <bean id="user" class="spring_in_practise.ch01.User"></bean>
+    <!--<context:annotation-config></context:annotation-config>-->
+    <context:component-scan base-package="spring_in_practise.ch02.service"/>
 
-    <!--<bean id="dataSource" lazy-init="false" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
-    <!--p:driverClassName="${dataSource.driverClassName}"-->
-    <!--p:url="${dataSource.url}"-->
-    <!--p:username="${dataSource.username}"-->
-    <!--p:password="${dataSource.password}"/>-->
-    <!--&lt;!&ndash;<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>&ndash;&gt;-->
-    <!--&lt;!&ndash;<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"&ndash;&gt;-->
-    <!--&lt;!&ndash;p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"&ndash;&gt;-->
-    <!--&lt;!&ndash;p:hibernateProperties-ref="hibernateProperties"></bean>&ndash;&gt;-->
-    <!--&lt;!&ndash;add a jpa factory bean&ndash;&gt;-->
-    <!--<bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"-->
+    <bean id="dataSource" lazy-init="false" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="${dataSource.driverClassName}"
+          p:url="${dataSource.url}"
+          p:username="${dataSource.username}"
+          p:password="${dataSource.password}"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"-->
     <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
-    <!--p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider" lazy-init="false"></bean>-->
-    <!--&lt;!&ndash;<bean id="transactionManager"&ndash;&gt;-->
-    <!--&lt;!&ndash;class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">&ndash;&gt;-->
-    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
-    <!--&lt;!&ndash;add a jpa transaction manager&ndash;&gt;-->
-    <!--<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"-->
-    <!--p:entityManagerFactory-ref="jpaFactory" lazy-init="false"></bean>-->
+    <!--p:hibernateProperties-ref="hibernateProperties"></bean>-->
+    <!--add a jpa factory bean-->
+    <bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+          p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"
+          p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider" lazy-init="false"></bean>
+    <!--<bean id="transactionManager"-->
+    <!--class="org.springframework.orm.hibernate5.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory">-->
+    <!--</bean>-->
+    <!--add a jpa transaction manager-->
+    <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="jpaFactory" lazy-init="false"></bean>
 
-    <!--<util:properties id="hibernateProperties">-->
-    <!--<prop key="hibernate.lazy">false</prop>-->
-    <!--<prop key="hibernate.dialect">-->
-    <!--org.hibernate.dialect.MySQL5InnoDBDialect-->
-    <!--</prop>-->
-    <!--<prop key="hibernate.show_sql">true</prop>-->
-    <!--</util:properties>-->
-    <!--&lt;!&ndash;<tx:annotation-driven/>&ndash;&gt;-->
-    <!--<jpa:repositories base-package="spring_in_practise.ch02.dao" entity-manager-factory-ref="jpaFactory"-->
-    <!--transaction-manager-ref="jpaTransactionManager"></jpa:repositories>-->
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.lazy">false</prop>
+        <prop key="hibernate.dialect">
+            org.hibernate.dialect.MySQL5InnoDBDialect
+        </prop>
+        <prop key="hibernate.show_sql">true</prop>
+    </util:properties>
+    <tx:annotation-driven/>
+    <jpa:repositories base-package="spring_in_practise.ch02.dao" entity-manager-factory-ref="jpaFactory"
+                      transaction-manager-ref="jpaTransactionManager"></jpa:repositories>
 </beans>
