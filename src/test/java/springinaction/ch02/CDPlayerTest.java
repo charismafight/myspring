@@ -1,8 +1,12 @@
 package springinaction.ch02;
 
+
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,9 +20,19 @@ public class CDPlayerTest {
     @Autowired
     private CDPlayer cdPlayer;
 
+    @Rule
+    public final StandardOutputStreamLog logger = new StandardOutputStreamLog();
+
+
     @Test
     public void cdShouldNotBeNull() {
         Assert.assertNotNull(cd);
-        cdPlayer.play();
     }
+
+    @Test
+    public void play() {
+        cdPlayer.play();
+        Assert.assertEquals("playing SgtPepper\n", logger.getLog());
+    }
+
 }
