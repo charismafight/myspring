@@ -19,6 +19,8 @@ import springinaction.ch02.CDPlayer;
 import springinaction.ch02.CompactDisc;
 import springinaction.ch02.Config;
 import springinaction.ch02.SgtPepper;
+import springinaction.ch03.Performance;
+import springinaction.ch03.Singer;
 
 import javax.inject.Inject;
 import javax.naming.Context;
@@ -87,7 +89,8 @@ public class SpringTest {
         System.out.println();
         System.out.println();
         System.out.println("spring in action start");
-
+        Performance singer = (Performance) context.getBean("singer");
+        singer.perform();
         System.out.println("spring in action end");
         ((ClassPathXmlApplicationContext) context).close();
     }
