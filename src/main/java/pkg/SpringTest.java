@@ -2,6 +2,7 @@ package pkg;
 
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -14,6 +15,10 @@ import spring_in_practise.ch02.dao.ContactDao;
 import spring_in_practise.ch02.dao.hbn.HbnConactDao;
 import spring_in_practise.ch02.model.Contact;
 import spring_in_practise.ch02.service.ContactService;
+import springinaction.ch02.CDPlayer;
+import springinaction.ch02.CompactDisc;
+import springinaction.ch02.Config;
+import springinaction.ch02.SgtPepper;
 
 import javax.inject.Inject;
 import javax.naming.Context;
@@ -42,12 +47,19 @@ public class SpringTest {
         s.getMyAnnoBean().setId(1);
         System.out.println("beanService's myAnnoBean's id:" + s.getMyAnnoBean().getId());
 
+
+        ApplicationContext context1 = new AnnotationConfigApplicationContext(Config.class);
+        CDPlayer cdPlayer = (CDPlayer) context1.getBean("cdplayer");
+        cdPlayer.play();
+        cdPlayer = (CDPlayer) context1.getBean("cdplayer");
+        System.out.println("-----------------cd player property bean id is:" + cdPlayer.getId());
+
         System.out.println("spring in practise ch01 start....");
         AccountDAOImpl accountDAO = (AccountDAOImpl) context.getBean("accountDAO");
         System.out.println(accountDAO.getCsvResource().getFilename());
         System.out.println("prototype test start....");
         AccountDAOImpl service = (AccountDAOImpl) ((AccountService) context.getBean("accountService")).getAccountDAO();
-        System.out.println("service's mark now is " + service.getMark());
+        System.out.println("service's MyAnnoBeanmark now is " + service.getMark());
         service.setMark(1);
         System.out.println("set mark to 1");
         AccountDAOImpl service1 = (AccountDAOImpl) ((AccountService) context.getBean("accountService")).getAccountDAO();
@@ -68,8 +80,6 @@ public class SpringTest {
         Contact contact = contactService.getContact(1L);
         System.out.println("contact is :" + contact.getId());
         System.out.println("spring in practise ch02 end");
-
-
 
 
         //this is spring in action start
