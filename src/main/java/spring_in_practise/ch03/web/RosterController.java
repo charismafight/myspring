@@ -10,8 +10,6 @@ import spring_in_practise.ch03.model.Member;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping(value = "/roster")
 public class RosterController {
     private List<Member> members = new ArrayList<>();
 

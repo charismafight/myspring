@@ -3,24 +3,24 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-    <servlet>
-        <servlet-name>main</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
+    <!--<servlet>-->
+    <!--<servlet-name>main</servlet-name>-->
+    <!--<servlet-class>-->
+    <!--org.springframework.web.servlet.DispatcherServlet-->
+    <!--</servlet-class>-->
 
-        <init-param>
-            <param-name>spring.profile.default</param-name>
-            <param-value>dev</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>main</servlet-name>
-        <url-pattern>/main/*</url-pattern>
-    </servlet-mapping>
+    <!--&lt;!&ndash;<init-param>&ndash;&gt;-->
+    <!--&lt;!&ndash;<param-name>spring.profile.default</param-name>&ndash;&gt;-->
+    <!--&lt;!&ndash;<param-value>dev</param-value>&ndash;&gt;-->
+    <!--&lt;!&ndash;</init-param>&ndash;&gt;-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>main</servlet-name>-->
+    <!--<url-pattern>/main/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <context-param>
-        <param-name>spring.profile.active</param-name>
-        <param-value>dev</param-value>
-    </context-param>
+    <!--<context-param>-->
+        <!--<param-name>spring.profile.active</param-name>-->
+        <!--<param-value>dev</param-value>-->
+    <!--</context-param>-->
 </web-app>
