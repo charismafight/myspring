@@ -4,12 +4,12 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration process_explicitly_annotated="false">
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/WEB-INF/main-servlet.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/beanconfig/TestBean.xml</file>
-        </fileset>
         <fileset id="web main servlet context" name="MVC main servlet context" removed="true">
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/main-servlet.xml</file>
+        </fileset>
+        <fileset id="fileset2" name="Spring Application Context " removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/springinaction/ch04/RootConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/springinaction/ch04/WebConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -76,6 +76,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
     <orderEntry type="library" name="Maven: taglibs:standard:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
