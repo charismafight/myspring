@@ -11,4 +11,9 @@ public class HomeController {
     public String home() {
         return "home";
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String spittles() {
+        return "spittles";
+    }
 }
