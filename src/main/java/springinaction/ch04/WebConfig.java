@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("springinaction.ch04.web")
+@ComponentScan("springinaction.ch04")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
