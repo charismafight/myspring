@@ -23,18 +23,18 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--<jee:jndi-lookup id="dataSource-jndi" jndi-name="jdbc/myspring" proxy-interface="javax.sql.DataSource"></jee:jndi-lookup>-->
-    <!--<bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>-->
+    <bean id="myBean" class="pkg.MyBean" p:name="${datasource.p}"></bean>
     <!--<context:component-scan base-package="pkg"></context:component-scan>-->
     <!--<context:component-scan base-package="spring_in_practise"></context:component-scan>-->
     <!--<context:component-scan base-package="springinaction.ch03"></context:component-scan>-->
     <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"-->
     <!--p:location="myspring.properties"></bean>-->
-    <!--<bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>-->
-    <!--<bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"-->
-    <!--p:csvResource-ref="mockResource"></bean>-->
-    <!--<bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>-->
-    <!--<bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>-->
-    <!--<bean id="user" class="spring_in_practise.ch01.User"></bean>-->
+    <bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>
+    <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"
+    p:csvResource-ref="mockResource"></bean>
+    <bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>
+    <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
+    <bean id="user" class="spring_in_practise.ch01.User"></bean>
     <!--<context:annotation-config></context:annotation-config>-->
     <!--<context:component-scan base-package="spring_in_practise.ch02.service"/>-->
 

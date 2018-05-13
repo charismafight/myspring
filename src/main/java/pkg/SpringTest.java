@@ -3,7 +3,6 @@ package pkg;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -28,10 +27,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.List;
 
 public class SpringTest {
-
-    @Lazy(value = false)
     public static void main(String[] args) throws NamingException {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanconfig/TestBean.xml");
         MyBean myBean = (MyBean) context.getBean("myBean");
@@ -74,14 +73,14 @@ public class SpringTest {
         System.out.println("prototype test end");
         System.out.println("spring in practise ch01 end");
 
-        System.out.println("spring in practise ch02 start");
-        ContactService contactService = (ContactService) context.getBean("contactServiceImpl");
-        ContactDao hbnConactDao = (ContactDao) context.getBean("hbnConactDao");
-        var contact_email = hbnConactDao.findByEmail("lli");
-        System.out.println("find by email result:" + contact_email);
-        Contact contact = contactService.getContact(1L);
-        System.out.println("contact is :" + contact.getId());
-        System.out.println("spring in practise ch02 end");
+//        System.out.println("spring in practise ch02 start");
+//        ContactService contactService = (ContactService) context.getBean("contactServiceImpl");
+//        ContactDao hbnConactDao = (ContactDao) context.getBean("hbnConactDao");
+//        var contact_email = hbnConactDao.findByEmail("lli");
+//        System.out.println("find by email result:" + contact_email);
+//        Contact contact = contactService.getContact(1L);
+//        System.out.println("contact is :" + contact.getId());
+//        System.out.println("spring in practise ch02 end");
 
 
         //this is spring in action start
@@ -89,9 +88,23 @@ public class SpringTest {
         System.out.println();
         System.out.println();
         System.out.println("spring in action start");
-        Performance singer = (Performance) context.getBean("singer");
-        singer.perform();
-        System.out.println("spring in action end");
-        ((ClassPathXmlApplicationContext) context).close();
+//        Performance singer = (Performance) context.getBean("singer");
+//        singer.perform();
+//        System.out.println("spring in action end");
+//        ((ClassPathXmlApplicationContext) context).close();
+
+
+        System.out.println("lambda tests started");
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        numbers.stream().filter(SpringTest::isEven).forEach(System.out::println);
+        System.out.println("lambda tests ended");
+    }
+
+    public static boolean isEven(Integer i) {
+        if (i % 2 == 0) {
+            return true;
+        }
+
+        return false;
     }
 }
