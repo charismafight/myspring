@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lee
@@ -8,9 +9,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Spittles</title>
 </head>
 <body>
-
+<c:forEach var="spittle" items="${spittleList}">
+    <li id="spittle_<c:out value="spittle.id"></c:out>">
+        <div class="spittleMessage">
+            <c:out value="${spittle.message}"></c:out>
+        </div>
+        <div>
+            <span class="spittleTime"><c:out value="${spittle.time}"></c:out> </span>
+            <span class="spittleLocation">(<c:out value="${spittle.latitude}"></c:out>,<c:out
+                    value="${spittle.longtitude}"></c:out> )</span>
+        </div>
+    </li>
+</c:forEach>
 </body>
 </html>

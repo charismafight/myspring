@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.servlet.ViewResolver;
 import springinaction.ch04.Spittle;
+
+import javax.inject.Inject;
 
 
 @Repository
@@ -16,7 +19,7 @@ public class JdbcSpittleRepository implements SpittleRepository {
 
     private JdbcOperations jdbc;
 
-    @Autowired
+    @Inject
     public JdbcSpittleRepository(JdbcOperations jdbc) {
         this.jdbc = jdbc;
     }

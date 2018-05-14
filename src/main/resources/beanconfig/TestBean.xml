@@ -31,22 +31,22 @@
     <!--p:location="myspring.properties"></bean>-->
     <bean id="mockResource" class="spring_in_practise.ch01.MockResource"></bean>
     <bean id="accountDAO" class="spring_in_practise.ch01.AccountDAOImpl" scope="prototype"
-    p:csvResource-ref="mockResource"></bean>
+          p:csvResource-ref="mockResource"></bean>
     <bean id="accountService" class="spring_in_practise.ch01.AccountService" p:accountDAO-ref="accountDAO"></bean>
     <bean id="protoTypeModel" class="spring_in_practise.ch01.ProtoTypeModel"></bean>
     <bean id="user" class="spring_in_practise.ch01.User"></bean>
     <!--<context:annotation-config></context:annotation-config>-->
     <!--<context:component-scan base-package="spring_in_practise.ch02.service"/>-->
 
-    <bean id="dataSource" lazy-init="false" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-          p:driverClassName="${dataSource.driverClassName}"
-          p:url="${dataSource.url}"
-          p:username="${dataSource.username}"
-          p:password="${dataSource.password}"/>
+    <!--<bean id="dataSource" lazy-init="false" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+          <!--p:driverClassName="${dataSource.driverClassName}"-->
+          <!--p:url="${dataSource.url}"-->
+          <!--p:username="${dataSource.username}"-->
+          <!--p:password="${dataSource.password}"/>-->
     <!--<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" c:dataSource-ref="dataSource"/>-->
-    <!--&lt;!&ndash;<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"&ndash;&gt;-->
-    <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
-    <!--p:hibernateProperties-ref="hibernateProperties"></bean>-->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"-->
+          <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
+          <!--p:hibernateProperties-ref="hibernateProperties"></bean>-->
     <!--add a jpa factory bean-->
     <!--<bean id="jpaFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"-->
     <!--p:dataSource-ref="dataSource" p:packagesToScan="spring_in_practise.ch02.model"-->
@@ -70,10 +70,10 @@
     <!--transaction-manager-ref="jpaTransactionManager"></jpa:repositories>-->
 
     <!--<aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
-    <bean id="jdbcTemplate"
-          class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource">
-            <ref bean="dataSource"/>
-        </property>
-    </bean>
+    <!--<bean id="jdbcTemplate"-->
+          <!--class="org.springframework.jdbc.core.JdbcTemplate">-->
+        <!--<property name="dataSource">-->
+            <!--<ref bean="dataSource"/>-->
+        <!--</property>-->
+    <!--</bean>-->
 </beans>
