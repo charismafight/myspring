@@ -229,7 +229,7 @@
                     </webApp>
                     <stopKey>CTRL+C</stopKey>
                     <stopPort>8999</stopPort>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <scanIntervalSeconds>60</scanIntervalSeconds>
                 </configuration>
                 <dependencies>
                     <dependency>

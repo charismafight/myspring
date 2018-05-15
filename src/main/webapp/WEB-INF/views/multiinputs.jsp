@@ -9,19 +9,22 @@
 <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <script>
     var myapp = angular.module('myapp', []);
+    myapp.controller("ctl", function ($scope) {
+        $scope.inputvalue = "xxx";
+    })
     myapp.directive("multiInput", function () {
         return {
             restrict: "E",
-            template: "<input value=\"{{text}}\">",
+            template: "<input value=\"{{content}}\">",
             link: function (scope, element, attrs) {
                 attrs.$observe('id', function (value) {
                     console.log(value);
-                    scope.text = scope.$eval(value);
+                    scope.content = scope.$eval(value);
                 })
             }
         };
     })
 </script>
-<div ng-app="myapp">
-    <multi-input id="fuck"></multi-input>
+<div ng-app="myapp" ng-controller="ctl">
+    <multi-input id="inputvalue"></multi-input>
 </div>
