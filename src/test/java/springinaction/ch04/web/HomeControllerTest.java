@@ -46,6 +46,28 @@ public class HomeControllerTest {
                 .andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
     }
 
+    @Test
+    public void shouldShowPagedSpittles() throws Exception {
+        List<Spittle> expectedSpittles = createSpittleList(50);
+        SpittleRepository mockRepository = mock(SpittleRepository.class);
+        //make a mock impl for calling mlckrepository.findspittles
+        when(mockRepository.findSpittles(238900, 50))
+                .thenReturn(expectedSpittles);
+
+        // override the auto injection of repository interface
+        SpittleController controller = new SpittleController(mockRepository);
+        MockMvc mockMvc = standaloneSetup(controller).build();
+        mockMvc.perform(get("/spittles/12345"))
+                .andExpect(view().name("spittle"))
+                .andExpect(model().attributeExists("spittle"))
+                .andExpect(model().attribute("spittle", expectedSpittles));
+    }
+
+    /**
+     * a mock data producer
+     * @param count
+     * @return [count]s spittles
+     */
     private List<Spittle> createSpittleList(int count) {
         List<Spittle> results = new ArrayList<>();
         for (int i = 0; i < count; i++) {
