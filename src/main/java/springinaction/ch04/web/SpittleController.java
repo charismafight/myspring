@@ -41,4 +41,10 @@ public class SpittleController {
         spittleRepository.save(new Spittle(form.getMessage(), new Date(), form.getLongitude(), form.getLatitude()));
         return "redirect:/spittles";
     }
+
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    public String showSpittle(@RequestParam("spittle_id") long spitlleId, Model model) {
+        model.addAttribute(spittleRepository.findOne(spitlleId));
+        return "spittle";
+    }
 }

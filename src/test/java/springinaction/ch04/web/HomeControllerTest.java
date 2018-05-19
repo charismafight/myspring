@@ -51,20 +51,21 @@ public class HomeControllerTest {
         List<Spittle> expectedSpittles = createSpittleList(50);
         SpittleRepository mockRepository = mock(SpittleRepository.class);
         //make a mock impl for calling mlckrepository.findspittles
-        when(mockRepository.findSpittles(238900, 50))
+        when(mockRepository.findSpittles(0, 50))
                 .thenReturn(expectedSpittles);
 
         // override the auto injection of repository interface
         SpittleController controller = new SpittleController(mockRepository);
-        MockMvc mockMvc = standaloneSetup(controller).build();
-        mockMvc.perform(get("/spittles/12345"))
-                .andExpect(view().name("spittle"))
-                .andExpect(model().attributeExists("spittle"))
-                .andExpect(model().attribute("spittle", expectedSpittles));
+        MockMvc mockMvc = standaloneSetup(controller).setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
+        mockMvc.perform(get("/spittles?max=0&count=50"))
+                .andExpect(view().name("spittles"))
+                .andExpect(model().attributeExists("spittleList"))
+                .andExpect(model().attribute("spittleList", hasItem(expectedSpittles)));
     }
 
     /**
      * a mock data producer
+     *
      * @param count
      * @return [count]s spittles
      */
