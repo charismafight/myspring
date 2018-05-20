@@ -15,6 +15,6 @@
 <body>
 This is Home page
 <a href="<c:url value="/spittles"></c:url>">Spittles</a>
-<a href="<c:url value="/spittles/register"></c:url>">Register</a>
+<a href="<c:url value="/spitter/register"></c:url>">Register</a>
 </body>
 </html>
