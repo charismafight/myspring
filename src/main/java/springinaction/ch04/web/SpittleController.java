@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springinaction.ch04.Spittle;
 import springinaction.ch04.data.SpittleRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class SpittleController {
 
     @RequestMapping(value = "/{spittleId}", method = RequestMethod.GET)
     public String spittle(@PathVariable long spittleId, Model model) {
-        model.addAttribute("spittleId",spittleRepository.findOne(spittleId));
+        List<Spittle> list = new ArrayList<>();
+        list.add(spittleRepository.findOne(spittleId));
+        model.addAttribute("spittleList", list);
         return "spittles";
     }
 
