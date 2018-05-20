@@ -1,5 +1,8 @@
 package springinaction.ch04;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Spitter implements Cloneable {
     private long id;
     private String firstName;
@@ -55,5 +58,15 @@ public class Spitter implements Cloneable {
         result.setUsername(getUsername());
         result.setPassword(getPassword());
         return result;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        return EqualsBuilder.reflectionEquals(this, that, "firstName", "lastName", "username", "password", "email");
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this, "firstName", "lastName", "username", "password", "email");
     }
 }
