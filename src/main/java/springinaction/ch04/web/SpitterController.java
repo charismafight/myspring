@@ -2,10 +2,13 @@ package springinaction.ch04.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springinaction.ch04.Spitter;
 import springinaction.ch04.data.SpitterRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping(value = "/spitter")
@@ -23,7 +26,10 @@ public class SpitterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(Spitter spitter) {
+    public String register(@Valid Spitter spitter, Errors errors) {
+        if (errors.hasErrors()) {
+            return "registerForm";
+        }
         spitterRepository.save(spitter);
 
         return "redirect:/spitter/" + spitter.getUsername();
