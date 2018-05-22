@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: lee
@@ -15,12 +16,13 @@
 </head>
 <body>
 <h1>Register</h1>
-<form method="post">
-    First Name:<input type="text" name="firstName"/><br/>
+<sf:form method="post" modelAttribute="spitter">
+    First Name:<sf:input path="firstName"></sf:input><br/>
+    <sf:errors path="firstName"></sf:errors>
     Last Name:<input type="text" name="lastName"/><br/>
     Username:<input type="text" name="username" id="username"><br/>
     Password:<input type="text" name="password" id="password"><br/>
     <input type="submit" value="register">
-</form>
+</sf:form>
 </body>
 </html>
