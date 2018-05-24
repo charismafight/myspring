@@ -3,8 +3,11 @@ package springinaction.ch04;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import javax.validation.constraints.Size;
+
 public class Spitter implements Cloneable {
     private long id;
+    @Size(min = 2, max = 10, message = "this is a error message,and it can be set into properties")
     private String firstName;
     private String lastName;
     private String username;

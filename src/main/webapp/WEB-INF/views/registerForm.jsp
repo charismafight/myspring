@@ -12,13 +12,13 @@
 <html>
 <head>
     <title>Spitter</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css"/>">
 </head>
 <body>
 <h1>Register</h1>
 <sf:form method="post" modelAttribute="spitter">
     First Name:<sf:input path="firstName"></sf:input><br/>
-    <sf:errors path="firstName"></sf:errors>
+    <sf:errors path="firstName" cssClass="error"></sf:errors><br/>
     Last Name:<input type="text" name="lastName"/><br/>
     Username:<input type="text" name="username" id="username"><br/>
     Password:<input type="text" name="password" id="password"><br/>
