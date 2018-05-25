@@ -17,11 +17,12 @@
 <body>
 <h1>Register</h1>
 <sf:form method="post" modelAttribute="spitter">
-    First Name:<sf:input path="firstName"></sf:input><br/>
-    <sf:errors path="firstName" cssClass="error"></sf:errors><br/>
-    Last Name:<input type="text" name="lastName"/><br/>
+    <sf:errors element="div" path="*" cssClass="error"></sf:errors>
+    <sf:label path="firstName" cssErrorClass="error">First Name:</sf:label><sf:input path="firstName"></sf:input><br/>
+    <sf:label path="lastName" cssErrorClass="error">Last Name:</sf:label><sf:input path="lastName"/><br/>
     Username:<input type="text" name="username" id="username"><br/>
     Password:<input type="text" name="password" id="password"><br/>
+
     <input type="submit" value="register">
 </sf:form>
 </body>

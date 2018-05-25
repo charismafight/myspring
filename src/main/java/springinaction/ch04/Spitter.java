@@ -7,8 +7,9 @@ import javax.validation.constraints.Size;
 
 public class Spitter implements Cloneable {
     private long id;
-    @Size(min = 2, max = 10, message = "this is a error message,and it can be set into properties")
+    @Size(min = 2, max = 10, message = "{firstName.size}")
     private String firstName;
+    @Size(min = 1, max = 5)
     private String lastName;
     private String username;
     private String password;
