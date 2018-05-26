@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -36,4 +38,17 @@ public class WebConfig implements WebMvcConfigurer {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
+    @Bean
+    public TilesConfigurer tilesConfigurer() {
+        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+        tilesConfigurer.setDefinitions("WEB-INF/**/tiles.xml");
+        tilesConfigurer.setCheckRefresh(true);
+        return tilesConfigurer;
+    }
+
+//    @Bean
+//    public ViewResolver viewResolver(){
+//        return new TilesViewResolver();
+//    }
 }
