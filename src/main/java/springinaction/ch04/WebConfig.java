@@ -35,7 +35,7 @@ import java.util.Properties;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    public ViewResolver viewResolver(ISpringTemplateEngine engine) {
+    public ViewResolver viewResolver(ITemplateEngine engine) {
 
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(engine);
@@ -68,9 +68,12 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public ITemplateResolver templateResolver(ServletContext context) {
-        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver(context);
+    public ITemplateResolver templateResolver() {
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setPrefix("/WEB-INF/templates/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        return resolver;
     }
 
 //    @Bean
