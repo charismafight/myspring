@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/style.css}">
+</head>
+<body>
+<form method="post" th:object="${spitter}">
+    <div class="errors" th:if="${#fields.hasErrors('*')}">
+        <ul>
+            <li th:each="err:${#fields.hasErrors('*')}" th:text="${err}">
+                Input is incorrect
+            </li>
+        </ul>
+    </div>
+    <label th:class="${#fields.hasErrors('firstName')}?'error'">First Name</label>
+    <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}?'error'"/><br/>
+
+    <label th:class="${#fields.hasErrors('lastName')}?'error'">Last Name</label>
+    <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('firstName')}?'error'"/><br/>
+
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
