@@ -17,7 +17,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"springinaction.ch04"}, excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)})
+@ComponentScan(basePackages = {"springinaction"}, excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)})
 public class RootConfig {
     @Bean
     public DataSource dataSource() throws IOException {

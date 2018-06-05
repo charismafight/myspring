@@ -33,7 +33,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("springinaction.ch04")
+@ComponentScan("springinaction")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean

@@ -1,6 +1,7 @@
 package springinaction.ch04.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,13 +18,17 @@ public class SpitterController {
     private SpitterRepository spitterRepository;
 
     @Autowired
+    MongoOperations mongo;
+
+    @Autowired
     public SpitterController(SpitterRepository spitterRepository) {
         this.spitterRepository = spitterRepository;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
-        model.addAttribute("spitter",new Spitter());
+        model.addAttribute("spitter", new Spitter());
+        System.out.println(mongo.getCollection("Order").count());
         return "registration";
     }
 

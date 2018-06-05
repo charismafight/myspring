@@ -22,14 +22,14 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-    @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
-        registration.addMapping("/");
-        registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads", 2097512, 4194304, 0));
-    }
+//    @Override
+//    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+//        registration.addMapping("/");
+//        registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads", 2097512, 4194304, 0));
+//    }
 
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{new MyFilter()};
-    }
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        return new Filter[]{new MyFilter()};
+//    }
 }
