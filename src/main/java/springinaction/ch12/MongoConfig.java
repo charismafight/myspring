@@ -19,8 +19,7 @@ public class MongoConfig {
 
     @Bean
     MongoClient mongo() {
-        var mongo = new MongoClient("localhost");
-        return mongo;
+        return new MongoClient("localhost");
     }
 
     @Bean

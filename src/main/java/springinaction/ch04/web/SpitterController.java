@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springinaction.ch04.Spitter;
 import springinaction.ch04.data.SpitterRepository;
+import springinaction.ch12.OrderRepository;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,8 @@ public class SpitterController {
 
     @Autowired
     MongoOperations mongo;
+    @Autowired
+    OrderRepository orderRepository;
 
     @Autowired
     public SpitterController(SpitterRepository spitterRepository) {
@@ -28,7 +31,7 @@ public class SpitterController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
         model.addAttribute("spitter", new Spitter());
-        System.out.println(mongo.getCollection("Order").count());
+        //System.out.println(mongo.getCollection("Order").count());
         return "registration";
     }
 
@@ -37,8 +40,9 @@ public class SpitterController {
         if (errors.hasErrors()) {
             return "registration";
         }
-        spitterRepository.save(spitter);
-
-        return "redirect:/spitter/" + spitter.getUsername();
+        //spitterRepository.save(spitter);
+        mongo.save(spitter);
+        System.out.println(orderRepository.findChucksOrders());
+        return "redirect:/";
     }
 }
