@@ -1,5 +1,7 @@
 package springinaction.ch04.web;
 
+import org.neo4j.ogm.session.Session;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Controller;
@@ -12,16 +14,19 @@ import springinaction.ch04.data.SpitterRepository;
 import springinaction.ch12.OrderRepository;
 
 import javax.validation.Valid;
+import java.util.Collections;
 
 @Controller
 @RequestMapping(value = "/spitter")
 public class SpitterController {
     private SpitterRepository spitterRepository;
 
+//    @Autowired
+//    MongoOperations mongo;
+//    @Autowired
+//    OrderRepository orderRepository;
     @Autowired
-    MongoOperations mongo;
-    @Autowired
-    OrderRepository orderRepository;
+    SessionFactory sessionFactory;
 
     @Autowired
     public SpitterController(SpitterRepository spitterRepository) {
@@ -32,6 +37,9 @@ public class SpitterController {
     public String showRegistrationForm(Model model) {
         model.addAttribute("spitter", new Spitter());
         //System.out.println(mongo.getCollection("Order").count());
+        Session session = sessionFactory.openSession();
+        String query = "MATCH (n:Dept) RETURN n LIMIT 25";
+        System.out.println(session.query(query, Collections.emptyMap()));
         return "registration";
     }
 
@@ -41,8 +49,8 @@ public class SpitterController {
             return "registration";
         }
         //spitterRepository.save(spitter);
-        mongo.save(spitter);
-        System.out.println(orderRepository.findChucksOrders());
+//        mongo.save(spitter);
+//        System.out.println(orderRepository.findChucksOrders());
         return "redirect:/";
     }
 }
