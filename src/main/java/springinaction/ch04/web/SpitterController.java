@@ -3,7 +3,6 @@ package springinaction.ch04.web;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springinaction.ch04.Spitter;
 import springinaction.ch04.data.SpitterRepository;
-import springinaction.ch12.OrderRepository;
+import springinaction.ch12.StudentNeo;
+import springinaction.ch12.StudentNeoRepository;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -21,7 +21,10 @@ import java.util.Collections;
 public class SpitterController {
     private SpitterRepository spitterRepository;
 
-//    @Autowired
+    @Autowired
+    StudentNeoRepository repository;
+
+    //    @Autowired
 //    MongoOperations mongo;
 //    @Autowired
 //    OrderRepository orderRepository;
@@ -40,6 +43,8 @@ public class SpitterController {
         Session session = sessionFactory.openSession();
         String query = "MATCH (n:Dept) RETURN n LIMIT 25";
         System.out.println(session.query(query, Collections.emptyMap()));
+        repository.save(new StudentNeo());
+        System.out.println("neo4j repository sample:" + repository.findAll());
         return "registration";
     }
 
