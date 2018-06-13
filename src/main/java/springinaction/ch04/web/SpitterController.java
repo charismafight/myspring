@@ -3,6 +3,7 @@ package springinaction.ch04.web;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -32,6 +33,9 @@ public class SpitterController {
     SessionFactory sessionFactory;
 
     @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
     public SpitterController(SpitterRepository spitterRepository) {
         this.spitterRepository = spitterRepository;
     }
@@ -45,6 +49,8 @@ public class SpitterController {
         System.out.println(session.query(query, Collections.emptyMap()));
         repository.save(new StudentNeo());
         System.out.println("neo4j repository sample:" + repository.findAll());
+        redisTemplate.opsForValue().set("fuck", "dog");
+        System.out.println("this is redis find test:" + redisTemplate.opsForValue().get("fuck"));
         return "registration";
     }
 
