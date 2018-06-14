@@ -3,6 +3,8 @@ package springinaction.ch04.web;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,9 @@ public class SpitterController {
     private RedisTemplate redisTemplate;
 
     @Autowired
+    private CacheManager cacheManager;
+
+    @Autowired
     public SpitterController(SpitterRepository spitterRepository) {
         this.spitterRepository = spitterRepository;
     }
@@ -51,6 +56,9 @@ public class SpitterController {
         System.out.println("neo4j repository sample:" + repository.findAll());
         redisTemplate.opsForValue().set("fuck", "dog");
         System.out.println("this is redis find test:" + redisTemplate.opsForValue().get("fuck"));
+        Cache cache = cacheManager.getCache("userCache");
+        cache.put("fuck", "dog");
+        System.out.println("this is ehcachecachemanager test:" + cache.get("fuck", String.class));
         return "registration";
     }
 

@@ -267,7 +267,11 @@
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>net.sf.ehcache.core</artifactId>
+            <version>2.4.4</version>
+        </dependency>
     </dependencies>
 
     <!--<build>-->
