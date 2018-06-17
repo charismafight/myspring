@@ -4,8 +4,8 @@ import org.springframework.security.access.annotation.Secured;
 
 public class SecuredFuck implements FuckService {
 
-    @Secured("FUCK_ROLE")
     @Override
+    @Secured("ROLE_FUCK")
     public void fuck() {
         System.out.println("this is secured fuck service");
     }
