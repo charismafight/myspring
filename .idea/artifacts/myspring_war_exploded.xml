@@ -91,6 +91,7 @@
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.4.4" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: com.caucho:hessian:4.0.51" />
         </element>
       </element>
       <element id="directory" name="META-INF">
