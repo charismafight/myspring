@@ -12,18 +12,25 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import springinaction.ch04.Spitter;
+import springinaction.ch04.Spittle;
 import springinaction.ch04.data.SpitterRepository;
+import springinaction.ch04.data.SpittleRepository;
 import springinaction.ch12.StudentNeo;
 import springinaction.ch12.StudentNeoRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/spitter")
 public class SpitterController {
     private SpitterRepository spitterRepository;
+    private static final String MAX_LONG_AS_STRING = "9223372036854775807";
 
     @Autowired
     StudentNeoRepository repository;
@@ -72,5 +79,12 @@ public class SpitterController {
 //        mongo.save(spitter);
 //        System.out.println(orderRepository.findChucksOrders());
         return "redirect:/";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Spitter> spittles(@RequestParam(value = "max", defaultValue = MAX_LONG_AS_STRING) long max,
+                           @RequestParam(value = "count", defaultValue = "20") int count) {
+        return new ArrayList<>();
     }
 }
