@@ -2,12 +2,11 @@ package springinaction.ch04.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import springinaction.ch04.Spittle;
 import springinaction.ch04.data.SpittleRepository;
 
@@ -50,5 +49,21 @@ public class SpittleController {
     public String showSpittle(@RequestParam("spittle_id") long spitlleId, Model model) {
         model.addAttribute(spittleRepository.findOne(spitlleId));
         return "spittles";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Spittle spittleById(@PathVariable long id) {
+        // 这里的做法是通过url的id找到对应的spittle并返回，然后消息转换器会负责把返回的结果给到客户端
+        // 当id不存在的时候，这个请求是不会有任何异常抛出来的。
+        return spittleRepository.findOne(id);
+    }
+
+    @ExceptionHandler(ClassNotFoundException.class)
+    public ResponseEntity<Error> spittleNotFound(ClassNotFoundException e) {
+        //假设这里是自定义的Exception，它会记录id，类似的我们自定义的异常也可以记录对应的异常信息用于错误发生时返回给客户端
+        String id = e.getMessage();
+        Error error = new Error("Spittle id not found");
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
