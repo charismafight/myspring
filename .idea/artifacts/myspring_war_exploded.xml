@@ -125,6 +125,7 @@
           <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.16.Final" />
           <element id="library" level="project" name="Maven: io.netty:netty-transport-native-unix-common:4.1.16.Final" />
           <element id="library" level="project" name="Maven: org.springframework.retry:spring-retry:1.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-websocket:5.0.4.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">

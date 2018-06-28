@@ -172,5 +172,6 @@
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.16.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-transport-native-unix-common:4.1.16.Final" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-websocket:5.0.4.RELEASE" level="project" />
   </component>
 </module>
