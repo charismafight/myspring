@@ -18,8 +18,21 @@ import java.util.List;
 @RequestMapping("/spittles")
 public class SpittleController {
     private static final String MAX_LONG_VALUE_STRING = "9223372036854775807";
-
+    //a sample for jmx
+    private static final int DEFAULT_SPITTLES_PER_PAGE = 20;
     private SpittleRepository spittleRepository;
+
+
+    private int spittlesPerPage = DEFAULT_SPITTLES_PER_PAGE;
+
+    public int getSpittlesPerPage() {
+        return spittlesPerPage;
+    }
+
+    public void setSpittlesPerPage(int spittlesPerPage) {
+        this.spittlesPerPage = spittlesPerPage;
+    }
+
 
     @Autowired
     public SpittleController(SpittleRepository spittleRepository) {
